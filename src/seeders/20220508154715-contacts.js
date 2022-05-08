@@ -1,14 +1,15 @@
+/* eslint-disable camelcase */
 module.exports = {
   up: async (queryInterface, _Sequelize) => queryInterface.bulkInsert('contacts',
     [
       {
-        firstName: 'Leonardo',
-        lastName: 'Silva',
+        first_name: 'Leonardo',
+        last_name: 'Silva',
         cpf: '00000000000',
       },
       {
-        firstName: 'José',
-        lastName: 'Marinho',
+        first_name: 'José',
+        last_name: 'Marinho',
         cpf: '00000000001',
       },
     ], {}),
