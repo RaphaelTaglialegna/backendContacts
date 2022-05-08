@@ -1,7 +1,7 @@
-'use strict';
+/* eslint-disable camelcase */
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => queryInterface.bulkInsert('emails',
+  up: async (queryInterface, _Sequelize) => queryInterface.bulkInsert('emails',
     [
       {
         contact_id: 1,

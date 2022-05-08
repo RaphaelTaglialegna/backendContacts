@@ -1,17 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  const Phone = sequelize.define('phone', {
-  
+  const Phone = sequelize.define('phone', {  
     id: { 
       type: DataTypes.INTEGER, 
       primaryKey: true, 
-      autoIncrement: true 
+      autoIncrement: true,
+    },    
+    contactId: { type: DataTypes.INTEGER,
+      foreignKey: true,
     },
-    
-    contactId: { 
-      type: DataTypes.INTEGER, 
-      foreignKey: true 
-    },
-
     phone: {
       tyepe: DataTypes.STRING,
       allowNull: false,
