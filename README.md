@@ -1,23 +1,26 @@
-#### Criar um sistema web para cadastro de contatos
-- Deve utilizar um banco de dados relacional para armazenar as informações.
-- Deve listar todos os contatos.
-- Deve poder incluir, editar e excluir os contatos.
-- Deve validar campos obrigatórios.
-- Deve ter os seguintes campos (*obrigatórios)
+## API de Contatos
+### Sobre
 
-  - Nome*
-  - Sobrenome*
-  - CPF - Verificar se já existe
-    - Na requisição deve aceitar 000.000.000-00 ou 00000000000. 
-  - E-mail - Verificar se já existe
-  - Telefone*
+Aplicação que lista, armazena, valida, modifica e exclui um usuário padronizado a partir de requisições em um banco de dados relacional.
 
-BÔNUS (opcional fazer)
-- Validar o CPF
-- Validar o E-mail
-- Colocar máscaras nos campos
-- Cadastrar mais de um telefone por pessoa
-- Cadastrar mais de um e-mail por pessoa
-- Pesquisar na lista de pessoas cadastradas
-- Criar o Docker (docker-compose) para rodar a aplicação
+### Desenvolvimento
+
+- JavaScript.
+- Node.js.
+- ORM Sequelize.
+- Testes de Integração com Mocha, Chai e Sinon.
+- Banco de Dado Mysql.
+- Containers Docker da Aplicação e banco de Dados.
+
+
+### Requisitos da Aplicação 
+
+Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios): 
+  - Contato 
+    - Nome*
+    - Sobrenome*
+    - CPF - único por contato
+    - E-mail - único no banco, vários por contato.
+    - Telefone* - vários por contato. 
+### Requisitos dos Testes
 
