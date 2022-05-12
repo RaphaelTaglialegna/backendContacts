@@ -25,7 +25,7 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
     - E-mail - único no banco, vários por contato.
     - Telefone* - vários por contato. 
 ### Requisitos dos Testes
- **1- Acessando a rota `/contact` retorne todos os usuários cadastrados no banco seguindo o sequinte modelo:**
+ **1- Acessando a rota `/contact` requisição do tipo `GET` retorne todos os usuários cadastrados no banco seguindo o sequinte modelo:**
  ```
  [
     {
@@ -51,3 +51,5 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
     ...
 ] 
  ```  
+  - Será avalizado checado se o status recebido foi  de '200'.
+  - Se e o arrey retornado é igual ao do banco com o banco.

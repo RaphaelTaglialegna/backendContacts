@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ./src/tests/*$NAME*.{test,spec}.js -t 10000 --exit",
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "test": "mocha ./tests/**/*$NAME*.test.js --exit",    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "prestart": "npm run db:reset",
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
