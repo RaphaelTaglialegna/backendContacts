@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha -r ./src/tests/*$NAME*.{test,spec}.js -t 10000 --exit",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "prestart": "npm run build && npm run db:reset",
-    "start": "node .",
+    "prestart": "npm run db:reset",
+    "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
     "compose:up": "(docker-compose up -d --build)",
     "compose:down": "(docker-compose down --remove-orphans)"
