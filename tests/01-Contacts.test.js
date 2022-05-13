@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable mocha/no-mocha-arrows */
 const sinon = require('sinon');
@@ -110,7 +111,7 @@ describe('Testando a API Contact', () => {
       .stub(Email, 'create')
       .resolves({
         id: 3,
-        email: 'mattos@gmail.com'
+        email: 'mattos@gmail.com',
     });
     });
     
@@ -130,7 +131,7 @@ describe('Testando a API Contact', () => {
       });
         expect(chaiHttpResponse.status).to.be.equal(400);
       });
-      it('Espera um erro com a seguinte mensagem "\"firstName\" is required".', () => {
+      it('Espera um erro com a seguinte mensagem ""firstName" is required".', () => {
         expect(chaiHttpResponse.body).to.haveOwnProperty('message')
         .to.be.eq('"firstName" is required');
       });    
@@ -146,8 +147,9 @@ describe('Testando a API Contact', () => {
     });
       expect(chaiHttpResponse.status).to.be.equal(400);
     });
-      it('Espera um erro com a seguinte mensagem "\"lastName\" is required".', () => {
-        expect(chaiHttpResponse.body).to.haveOwnProperty('message').to.be.eq('"lastName" is required');
+      it('Espera um erro com a seguinte mensagem ""lastName" is required".', () => {
+        expect(chaiHttpResponse.body).to.haveOwnProperty('message')
+        .to.be.eq('"lastName" is required');
       });      
     });
 
@@ -162,7 +164,7 @@ describe('Testando a API Contact', () => {
     });
       expect(chaiHttpResponse.status).to.be.equal(400);
     });
-      it('Espera um erro com a seguinte mensagem "\"phones[0].phone\" is required".', () => {
+      it('Espera um erro com a seguinte mensagem ""phones[0].phone" is required".', () => {
         expect(chaiHttpResponse.body).to.haveOwnProperty('message')
         .to.be.eq('"phones[0].phone" is required');
       });      
