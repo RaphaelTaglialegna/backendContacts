@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable mocha/no-mocha-arrows */
 const sinon = require('sinon');
 const chai = require('chai');
@@ -8,11 +9,19 @@ const app = require('../src/app');
 const DATABASECONTACT = require('./Mocks/databaseMock');
 const CONTACTRESPONSE = require('./Mocks/contactByIdMock');
 
-const { Contact } = require('../src/models');
+const { Contact, Phone, Email } = require('../src/models');
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
+
+const VALIDCONTACT = {        
+  firstName: 'Robert',
+  lastName: 'Mattos',
+  cpf: '00000000536',
+  emails: [{ email: 'mattos@gmail.com' }],
+  phones: [{ phone: '19912345659' }],
+};
 
 describe('Testando a API Contact', () => {
   let chaiHttpResponse;
@@ -85,15 +94,34 @@ describe('Testando a API Contact', () => {
     before(async () => {
       sinon
         .stub(Contact, 'create')
-        .resolves(DATABASECONTACT);
+        .resolves({
+          id: 3,
+          firstName: 'Robert',
+          lastName: 'Mattos',
+          cpf: '00000000536',
+      });
+      sinon
+        .stub(Phone, 'create')
+        .resolves({
+          id: 3,
+          phone: '19912345659',
+      });
+      sinon
+      .stub(Email, 'create')
+      .resolves({
+        id: 3,
+        email: 'mattos@gmail.com'
+    });
     });
     
     after(() => {
       (Contact.create).restore();
+      (Phone.create).restore();
+      (Email.create).restore();
     });
 
     describe('Fazendo a requisição sem o campo firstName', () => {
-        it('Espera no corpo da resposta STATUS 400', async () => {
+      it('Espera no corpo da resposta STATUS 400', async () => {
         chaiHttpResponse = await chai.request(app).post('/contacts').send({        
           lastName: 'Mattos',
           cpf: '00000000536',
@@ -103,8 +131,51 @@ describe('Testando a API Contact', () => {
         expect(chaiHttpResponse.status).to.be.equal(400);
       });
       it('Espera um erro com a seguinte mensagem "\"firstName\" is required".', () => {
-        expect(chaiHttpResponse.body).to.haveOwnProperty('message').to.be.eq('"firstName" is required');
+        expect(chaiHttpResponse.body).to.haveOwnProperty('message')
+        .to.be.eq('"firstName" is required');
       });    
+    });
+
+    describe('Fazendo a requisição sem o campo lastName', () => {
+      it('Espera no corpo da resposta STATUS 400', async () => {
+      chaiHttpResponse = await chai.request(app).post('/contacts').send({        
+        firstName: 'Robert',
+        cpf: '00000000536',
+        emails: [{ email: 'mattos@gmail.com' }],
+        phones: [{ phone: '19912345659' }],
+    });
+      expect(chaiHttpResponse.status).to.be.equal(400);
+    });
+      it('Espera um erro com a seguinte mensagem "\"lastName\" is required".', () => {
+        expect(chaiHttpResponse.body).to.haveOwnProperty('message').to.be.eq('"lastName" is required');
+      });      
+    });
+
+    describe('Fazendo a requisição sem o campo phone', () => {
+      it('Espera no corpo da resposta STATUS 400', async () => {
+      chaiHttpResponse = await chai.request(app).post('/contacts').send({        
+        firstName: 'Robert',
+        lastName: 'Mattos',
+        cpf: '00000000536',
+        emails: [{ email: 'mattos@gmail.com' }],
+        phones: [{}],
+    });
+      expect(chaiHttpResponse.status).to.be.equal(400);
+    });
+      it('Espera um erro com a seguinte mensagem "\"phones[0].phone\" is required".', () => {
+        expect(chaiHttpResponse.body).to.haveOwnProperty('message')
+        .to.be.eq('"phones[0].phone" is required');
+      });      
+    });
+
+    describe('Cadastrando um usuário válido', () => {
+      it('Espera no corpo da resposta STATUS 201', async () => {
+      chaiHttpResponse = await chai.request(app).post('/contacts').send(VALIDCONTACT);
+      expect(chaiHttpResponse.status).to.be.equal(201);
+    });
+      it('Espera um retorno do usuário cadastrado e seu respectivo ID".', () => {
+        expect(chaiHttpResponse.body).to.be.an('object').deep.equal({ id: 3, ...VALIDCONTACT });
+      });      
     });
   });
 });

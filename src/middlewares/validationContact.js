@@ -1,3 +1,4 @@
+const { object } = require('joi');
 const Joi = require('joi');
 
 const contactSchema = Joi.object().keys({
@@ -7,9 +8,9 @@ const contactSchema = Joi.object().keys({
   emails: Joi.array().items({
     email: Joi.string().email(),
   }),
-  phones: Joi.array().items({
+  phones: Joi.array().items(Joi.object({
     phone: Joi.string().length(11).required(),
-  }),
+  })),
 }).messages({
   'any.required': '400|{{#label}} is required',
   'string.min': '400|{#label} length must be at least 2 characters long',

@@ -1,6 +1,6 @@
 const express = require('express');
 const ContactsController = require('../controllers/ContactsController');
-const validateContact = require('../middlewares/validationUser');
+const validateContact = require('../middlewares/validationContact');
 
 const router = express.Router();
 const PATHWITHID = '/contacts/:id';

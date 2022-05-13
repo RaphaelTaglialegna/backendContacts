@@ -45,7 +45,7 @@ const createContact = async (req, res) => {
     const contactData = req.body;
     const id = await ContactsServices.createContact(contactData);
     
-      return res.status(201).json({ id, contactData });
+      return res.status(201).json({ id, ...contactData });
     } catch (err) {
     res.status(500).json({ error: err.message });   
   }
