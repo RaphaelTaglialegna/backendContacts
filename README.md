@@ -50,6 +50,7 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
     - E-mail - único no banco, vários por contato.
     - Telefone* - vários por contato. 
 ### Requisitos dos Testes
+Rode o `npm test` para ver os testes.
 
  **1- Acessando a rota `/contacts` requisição do tipo `GET` retorne todos os contatos cadastrados no banco seguindo o sequinte modelo:**
  ```
