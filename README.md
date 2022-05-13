@@ -13,7 +13,32 @@ Aplicação que lista, armazena, valida, modifica e exclui um usuário padroniza
 - Containers Docker da Aplicação e banco de Dados.
 
 ### Instalação 
-...
+
+Para rodar esse projeto, existe duas formas: 
+
+1 - Rodando localmente com o Mysql instalado previamente usando, scripts:  
+``` 
+npm install // para instalar as dependências
+
+npm start // para inicializar a aplicação e criar e implementar o banco de dados.
+```
+2 - Rodando com o Docker Compose e utilizando, nele tanto a aplicação quanto o banco de dados estão containirizados.  
+``` 
+npm install // para instalar as dependências
+
+npm run compose:up // para inicializar a aplicação e criar e implementar o banco de dados.
+
+docker container ls // para verificar as portas usadas padrão 3001 do backend.
+```
+#### Instruções da aplicação. 
+
+Rotas e requisições: 
+
+- GET para `/contacts`, vai retornar todos os contatos.
+- GET para `/contacts/:id`, vai retornar apenas um contato com um ID válido.
+- POST para `/contacts`, para criar um usuário.
+- PUT para `/contacts/:id`, para editar um contato com um ID válido.
+- DELETE para `/contacts/:id`, para excluir um contato com um ID válido.
 
 ### Requisitos da Aplicação 
 
@@ -25,7 +50,8 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
     - E-mail - único no banco, vários por contato.
     - Telefone* - vários por contato. 
 ### Requisitos dos Testes
- **1- Acessando a rota `/contact` requisição do tipo `GET` retorne todos os contatos cadastrados no banco seguindo o sequinte modelo:**
+
+ **1- Acessando a rota `/contacts` requisição do tipo `GET` retorne todos os contatos cadastrados no banco seguindo o sequinte modelo:**
  ```
  [
     {
@@ -54,7 +80,7 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
   - Será avalizado checado se o status recebido foi  de '200'.
   - Se e o array retornado é igual ao do banco de dados.
 
- **2- Acessando a rota `/contact/:id` requisição do tipo `GET`  passando um id como parâmetro retorne um contacto correspondente aquele id:**
+ **2- Acessando a rota `/contacts/:id` requisição do tipo `GET`  passando um id como parâmetro retorne um contacto correspondente aquele id:**
  ```
 {
     "id": 2,
@@ -87,3 +113,32 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
   - Será avalizado checado se o status recebido foi  de '200'.
   - Se e o objeto retornado é igual ao o esperado.
   - Se o id passado como parâmetro é igual ao do objeto retornado.
+
+  **3 - Criando um novo contato através da rota `/contacts` fazendo requisição do tipo `POST` será testado as seguintes validações.**
+ 
+ ```
+ // Padrão da requisição para cadastro.
+{        
+  firstName: 'Robert', // Campo obrigatório
+  lastName: 'Mattos', // Campo obrigatório
+  cpf: '00000000536',
+  emails: [{ email: 'mattos@gmail.com' }],
+  phones: [{ phone: '19912345659' }], // Campo obrigatório ao menos 1
+};
+```
+
+1 - Fazendo uma requisição sem o campo firstName.
+- Será avalizado checado se o status recebido foi  de '400'.
+- Espera um erro com a seguinte mensagem `'"firstName" is required'`.
+
+2 - Fazendo uma requisição sem o campo lastName.
+- Será avalizado checado se o status recebido foi  de '400'.
+- Espera um erro com a seguinte mensagem `'"lastName" is required'`.
+
+3 - Fazendo uma requisição sem o campo phone.
+- Será avalizado checado se o status recebido foi  de '400'.
+- Espera um erro com a seguinte mensagem `'"phones[0].phone" is required'`.
+
+4 - Fazendo um cadastro do usuário válido. 
+- Será avalizado checado se o status recebido foi  de '201'.
+- Espera um retorno do usuário cadastrado e seu respectivo ID.
