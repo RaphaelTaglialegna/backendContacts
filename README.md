@@ -6,6 +6,7 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/RaphaelTaglialegna/backendContacts">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/RaphaelTaglialegna/backendContacts">
 </p>
+
 ### Sobre
 
 Aplicação que lista, armazena, valida, modifica e exclui um usuário padronizado a partir de requisições em um banco de dados relacional.
