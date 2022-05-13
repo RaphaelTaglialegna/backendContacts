@@ -1,6 +1,5 @@
 ## API de Contatos
   <p align="center">
-  <img alt="GitHub" src="https://img.shields.io/github/license/RaphaelTaglialegna/backendContacts">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/RaphaelTaglialegna/backendContacts">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/RaphaelTaglialegna/backendContacts">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/RaphaelTaglialegna/backendContacts">
