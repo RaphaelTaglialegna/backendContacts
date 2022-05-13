@@ -25,7 +25,7 @@ const validateContact = async (req, res, next) => {
 
 if (error) {
   const [status, message] = error.message.split('|');  
-  return res.status(status).json({ message });
+  return res.status(+status).json({ message });
 }
 
 next();

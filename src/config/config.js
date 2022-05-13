@@ -7,7 +7,10 @@ module.exports = {
     database: 'contacts_api',
     host: process.env.HOSTNAME,
     dialect: 'mysql',
-    port: process.env.DB_PORT || 3002
+    port: process.env.DB_PORT || 3002,
+    logging: false,
+    headers: false,
+
   },
   test: {
     username: process.env.MYSQL_USER,
@@ -18,6 +21,9 @@ module.exports = {
     define: {
       timestamps: false,
   },
+  logging: false,
+  headers: false,
+
   },
   production: {
     username: process.env.MYSQL_USER,
@@ -25,5 +31,6 @@ module.exports = {
     database: 'contacts_api',
     host: process.env.HOSTNAME,
     dialect: 'mysql',
+    logging: false,
   },
 };

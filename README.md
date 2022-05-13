@@ -25,7 +25,7 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
     - E-mail - único no banco, vários por contato.
     - Telefone* - vários por contato. 
 ### Requisitos dos Testes
- **1- Acessando a rota `/contact` requisição do tipo `GET` retorne todos os usuários cadastrados no banco seguindo o sequinte modelo:**
+ **1- Acessando a rota `/contact` requisição do tipo `GET` retorne todos os contatos cadastrados no banco seguindo o sequinte modelo:**
  ```
  [
     {
@@ -52,4 +52,38 @@ Cadastro de contato sequindo o seguinte modelo (* campos obrigatórios):
 ] 
  ```  
   - Será avalizado checado se o status recebido foi  de '200'.
-  - Se e o arrey retornado é igual ao do banco com o banco.
+  - Se e o array retornado é igual ao do banco de dados.
+
+ **2- Acessando a rota `/contact/:id` requisição do tipo `GET`  passando um id como parâmetro retorne um contacto correspondente aquele id:**
+ ```
+{
+    "id": 2,
+    "firstName": "José",
+    "lastName": "Marinho",
+    "cpf": "00000000001",
+    "emails": [
+        {
+            "id": 2,
+            "email": "jose@gmail.com"
+        },
+        {
+            "id": 3,
+            "email": "jojo@gmail.com"
+        }
+    ],
+    "phones": [
+        {
+            "id": 2,
+            "phone": "19912345622"
+        },
+        {
+            "id": 3,
+            "phone": "19912345672"
+        }
+    ]
+}
+
+ ```  
+  - Será avalizado checado se o status recebido foi  de '200'.
+  - Se e o objeto retornado é igual ao o esperado.
+  - Se o id passado como parâmetro é igual ao do objeto retornado.
