@@ -19,7 +19,7 @@ const { expect } = chai;
 const VALIDCONTACT = {        
   firstName: 'Robert',
   lastName: 'Mattos',
-  cpf: '0000000053',
+  cpf: '00000000536',
   emails: [{ email: 'mattos@gmail.com' }],
   phones: [{ phone: '19912345659' }],
 };
