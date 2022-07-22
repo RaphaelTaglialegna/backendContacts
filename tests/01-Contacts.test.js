@@ -99,7 +99,7 @@ describe('Testando a API Contact', () => {
           id: 3,
           firstName: 'Robert',
           lastName: 'Mattos',
-          cpf: '00000000536',
+          cpf: '0000000053',
       });
       sinon
         .stub(Phone, 'create')
