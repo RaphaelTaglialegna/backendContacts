@@ -6,9 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d
-      - name: Test
-        run : npm test     
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
