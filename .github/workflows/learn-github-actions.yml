@@ -5,14 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
+      - name: Executando os containers
         run: docker-compose up -d
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
       - name: Install dependencies
-        run: |
-          npm install
-          npm run test
-          
-
+        run:  npm install
+      - name: Executando os testes
+        run:  npm run test
